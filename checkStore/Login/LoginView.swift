@@ -1,20 +1,38 @@
 //
-//  ContentView.swift
+//  LoginView.swift
 //  checkStore
 //
-//  Created by Axl Estevez on 22/07/24.
+//  Created by Axl Estevez on 15/08/24.
 //
 
 import SwiftUI
 
-struct ContentView: View {
-    
+struct LoginView: View {
     @State private var username: String = ""
     @State private var password: String = ""
+    @State private var isLoggedIn: Bool = false
+    @State private var timeRemaining: Int = 5
+    
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
+        if isLoggedIn{
+            SpinnerView()
+                .onReceive(timer) { _ in
+                    if timeRemaining > 0 {
+                        timeRemaining -= 1
+                    } else if timeRemaining == 0 {
+                        isLoggedIn = false
+                    }
+                }
+        } else {
+            loginView
+        }
+    }
+    
+    var loginView: some View {
         VStack(alignment: .center, spacing: 10) {
-            Text("Iniciar sesión")
+            Text("Inicia sesión")
                 .font(.title2)
                 .foregroundStyle(Color("letters", bundle: nil))
                 .padding(.top, 16)
@@ -34,6 +52,7 @@ struct ContentView: View {
                     TextField("", text: $username)
                         .frame(height: 35)
                         .tint(.blue)
+                        .padding([.leading, .trailing], 10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 5)
                                 .stroke(Color.lettersGray, lineWidth: 1)
@@ -50,6 +69,7 @@ struct ContentView: View {
                     SecureField("", text: $password)
                         .frame(height: 35)
                         .tint(.blue)
+                        .padding([.leading, .trailing], 10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 5)
                                 .stroke(Color.lettersGray, lineWidth: 1)
@@ -58,7 +78,7 @@ struct ContentView: View {
                 .padding(.horizontal, 16)
                 
                 Button(action: {
-                    print("Inicar sesión")
+                    isLoggedIn = true
                 }) {
                     Text("Iniciar sesión")
                         .frame(height: 35)
@@ -78,5 +98,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    LoginView()
 }
