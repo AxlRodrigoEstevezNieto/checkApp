@@ -9,13 +9,15 @@ import SwiftUI
 
 struct SpinnerView: View {
     
+    var title: String
+    
     var body: some View {
         VStack(alignment: .center) {
             ProgressView()
                 .frame(width: 120, height: 50)
                 .scaleEffect(3.0)
             
-            Text("Validando información")
+            Text(title)
                 .padding(.top, 16)
                 .foregroundStyle(.letters)
                 .fontWeight(.semibold)
@@ -23,6 +25,3 @@ struct SpinnerView: View {
     }
 }
 
-#Preview {
-    SpinnerView()
-}

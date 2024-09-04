@@ -1,25 +1,26 @@
 //
-//  LoginView.swift
+//  SingInView.swift
 //  checkStore
 //
-//  Created by Axl Estevez on 15/08/24.
+//  Created by Axl Estevez on 23/08/24.
 //
 
 import SwiftUI
 
-struct LoginView: View {
+struct SingInView: View {
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var isLoggedIn: Bool = false
     @State private var spinerViewPresent: Bool = false
+    @State private var timeRemaining: Int = 5
     @State private var isSignInView: Bool = false
-    @StateObject private var viewModel = LoginViewModel()
+    @ObservedObject var viewModel: LoginViewModel
     
     var body: some View {
-        if !spinerViewPresent && !isLoggedIn{
-            loginView
+        if !spinerViewPresent && !isLoggedIn {
+            singInView
         } else if !isLoggedIn && spinerViewPresent{
-            SpinnerView(title: "Validando datos")
+            SpinnerView(title: "validando Datos")
         } else if isLoggedIn && !spinerViewPresent {
             HomeView()
         } else if !isLoggedIn && !spinerViewPresent {
@@ -27,9 +28,9 @@ struct LoginView: View {
         }
     }
     
-    var loginView: some View {
+    var singInView: some View {
         VStack(alignment: .center, spacing: 10) {
-            Text("Inicia sesión")
+            Text("Crear Cuenta nueva")
                 .font(.title2)
                 .foregroundStyle(Color("letters", bundle: nil))
                 .padding(.top, 16)
@@ -50,7 +51,6 @@ struct LoginView: View {
                         .frame(height: 35)
                         .tint(.blue)
                         .padding([.leading, .trailing], 10)
-                        .textInputAutocapitalization(.never)
                         .overlay(
                             RoundedRectangle(cornerRadius: 5)
                                 .stroke(Color.lettersGray, lineWidth: 1)
@@ -88,24 +88,25 @@ struct LoginView: View {
                         }
                     }
                 }) {
-                    Text("Iniciar sesión")
+                    Text("Registrarse")
                         .frame(height: 35)
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .background(.blue)
                         .foregroundStyle(.white)
                         .cornerRadius(15.0)
                 }
+                .background(.white)
                 .padding(.top, 16)
                 .padding(.horizontal, 16)
                 
                 HStack(alignment: .center) {
-                    Text("¿Aun no tienes cuenta?")
+                    Text("¿Ya tienes cuenta?")
                         .padding(.leading, 16)
                         .foregroundStyle(Color.grayFocus)
                     Button(action: {
-                        isSignInView = true
+                        viewModel.isSingIn = true
                     }) {
-                        Text("Registrate gratis")
+                        Text("Iniciar sesión")
                             .font(.headline)
                     }
                 }
@@ -121,5 +122,5 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView()
+    SingInView(viewModel: LoginViewModel())
 }

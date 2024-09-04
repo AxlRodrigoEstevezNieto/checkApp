@@ -7,6 +7,7 @@ target 'checkStore' do
 
   # Pods for checkStore
   pod 'lottie-ios'
+  pod 'Alamofire'
   
   # Add the pods for the Firebase products you want to use in your app
   # For example, to use Firebase Authentication and Cloud Firestore
