@@ -15,7 +15,7 @@ class HomeViewModel: ObservableObject {
     
     func getProductsUser(handler: @escaping ResponseFirestore) {
         let user = UserDefaults.standard.string(forKey: "username")
-        router.getUserCollections(user: user!) { jsonResponse, error in
+        router.getUserProducts(user: user!) { jsonResponse, error in
             handler(jsonResponse, error)
         }
     }

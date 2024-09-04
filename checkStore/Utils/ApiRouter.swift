@@ -12,6 +12,7 @@ import FirebaseFirestore
 
 public typealias ResponseHandler = (_ jsonResponse: Any, _ urlResponse: URLResponse?) -> ()
 public typealias ResponseFirestore = (_ jsonResponse: Any?, _ error: Error?) -> ()
+public typealias ProductoResponse = (_ jsonData: [String: Any]?, _ error: Error?) -> ()
 public typealias ResponseLoginHandler = (_ isLogin: Bool) -> ()
 public typealias ResponseSingInHandler = (_ isSuccess: Bool) -> ()
 
@@ -26,7 +27,6 @@ class Router {
         if (userName != String.empty) && (password != String.empty) {
             Auth.auth().signIn(withEmail: userName, password: password) { result, error in
                 if let result = result, error == nil {
-                    debugPrint(result.user.email ?? String.empty)
                     let isLogin = true
                     completionHanler(isLogin)
                 } else {
@@ -58,21 +58,8 @@ class Router {
 // MARK: get products detail
 
 extension Router {
-    
-    func getAllProductsUser(user: String, completionHandler: @escaping ResponseFirestore ) {
-        db.collection("users").document(user).getDocument { (documentSnapshot, error) in
-            if let document = documentSnapshot, error == nil {
-                let productsDocument = document.value(forKey: "productos")
-                let jsonResponse = document.data()!
-                let errorResponse = error
-                completionHandler(jsonResponse, error)
-            } else {
-                completionHandler((documentSnapshot?.data())!, error)
-            }
-        }
-    }
-    
-    func getUserCollections(user: String, completionHandler: @escaping ResponseFirestore) {
+        
+    func getUserProducts(user: String, completionHandler: @escaping ResponseFirestore) {
         let userDocument = db.collection("users").document(user)
         
         userDocument.collection("productos").getDocuments { (querySnapshot, error)  in
@@ -82,8 +69,29 @@ extension Router {
                 let documents = querySnapshot!.documents.map { document in
                     return document.data()
                 }
-                
                 completionHandler(documents, nil)
+            }
+        }
+    }
+    
+    func getProduct(idProduct: String, completionHandler: @escaping ProductoResponse) {
+        let currentUser = UserDefaults.standard.string(forKey: "username")
+        let collectionReferenceUser = db.collection("users").document(currentUser!)
+        let collectionProductsReference = collectionReferenceUser.collection("productos")
+        
+        collectionProductsReference.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                completionHandler(nil, error)
+            } else {
+                let product = querySnapshot!.documents.compactMap { document -> [String:Any]? in
+                    let documentId = document.documentID
+                    let data = document.data()
+                    if documentId == idProduct {
+                        return data
+                    }
+                    return nil
+                }
+                completionHandler(product[0], nil)
             }
         }
     }

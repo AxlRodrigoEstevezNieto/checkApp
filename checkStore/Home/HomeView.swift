@@ -44,7 +44,7 @@ struct HomeView: View {
     }
     
     var homeViewContent: some View {
-        NavigationStack {
+        NavigationSplitView {
             VStack {
                 VStack (alignment: .center) {
                     Image(systemName: "barcode")
@@ -53,8 +53,16 @@ struct HomeView: View {
                         .padding(.top, 16)
                     
                     List(filteredItems, id: \.self) { item in
-                            Text(item)
-                    }
+                        NavigationLink {
+                            Text("En construcción ...")
+                        } label:{
+                            Button(action: {
+                                
+                            }, label: {
+                                    Text(item)
+                            })
+                        }
+                        }
                     .searchable(text: $searchText, prompt: "Buscar produtos")
                     .onAppear {
                         customizeSearchBarCancelButton()
@@ -106,6 +114,8 @@ struct HomeView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
+        } detail: {
+            
         }
     }
     
