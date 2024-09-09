@@ -25,3 +25,6 @@ struct SpinnerView: View {
     }
 }
 
+#Preview {
+    SpinnerView(title: "Validando datos")
+}
