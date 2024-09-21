@@ -10,8 +10,3 @@ import Foundation
 struct LoginModel: Codable {
     var user: UserModel
 }
-
-struct UserModel: Codable {
-    var userName: String = String.emptyString
-    var password: String = String.emptyString
-}

@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct SingInView: View {
+struct SingUPView: View {
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var isLoggedIn: Bool = false
     @State private var spinerViewPresent: Bool = false
     @State private var timeRemaining: Int = 5
     @State private var isSignInView: Bool = false
-    @ObservedObject var viewModel: LoginViewModel
+    @ObservedObject var loginViewModel: LoginViewModel
     
     var body: some View {
         if !spinerViewPresent && !isLoggedIn {
@@ -30,19 +30,20 @@ struct SingInView: View {
     
     var singInView: some View {
         VStack(alignment: .center, spacing: 10) {
-            Text("Crear Cuenta nueva")
+            Text("Registrate")
                 .font(.title2)
                 .foregroundStyle(Color("letters", bundle: nil))
                 .padding(.top, 16)
             
-            Image(Constants.ImagesSourceName.loginImage, bundle: nil)
+            Image(systemName: "person.crop.circle.fill.badge.plus")
                 .resizable()
-                .frame(width: 150, height: 150)
+                .frame(width: 175, height: 150)
                 .padding(.top, 16)
-            
+                .foregroundStyle(Color.blue)
+
             VStack(alignment: .leading) {
                 VStack(alignment: .leading){
-                    Text("Nombre de usuario")
+                    Text("Correo electrónico")
                         .textCase(.none)
                         .font(.headline)
                         .foregroundStyle(.lettersGray)
@@ -78,7 +79,7 @@ struct SingInView: View {
                 Button(action: {
                     spinerViewPresent = true
                     let user = UserModel(userName: $username.wrappedValue, password: $password.wrappedValue)
-                    viewModel.login(user: user) { isLogin in
+                    loginViewModel.login(user: user) { isLogin in
                         if isLogin {
                             isLoggedIn = true
                             spinerViewPresent = false
@@ -104,7 +105,7 @@ struct SingInView: View {
                         .padding(.leading, 16)
                         .foregroundStyle(Color.grayFocus)
                     Button(action: {
-                        viewModel.isSingIn = true
+                        loginViewModel.isSingIn = true
                     }) {
                         Text("Iniciar sesión")
                             .font(.headline)
@@ -122,5 +123,5 @@ struct SingInView: View {
 }
 
 #Preview {
-    SingInView(viewModel: LoginViewModel())
+    SingUPView(loginViewModel: LoginViewModel())
 }

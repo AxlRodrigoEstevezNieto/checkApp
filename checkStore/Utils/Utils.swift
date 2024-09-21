@@ -14,3 +14,9 @@ extension View {
         UIApplication.shared.sendAction(resign, to: nil, from: nil, for: nil)
     }
 }
+
+struct Utils {
+    static func emailValidate(email: String) -> Bool {
+        return false
+    }
+}
