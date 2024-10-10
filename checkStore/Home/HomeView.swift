@@ -15,6 +15,7 @@ struct HomeView: View {
     @State private var searchText: String = String.emptyString
     @State private var isLoadProducts: Bool = false
     @State private var isNotProducts: Bool = false
+    @State private var isShowScanner: Bool = false
     @StateObject private var homeViewModel = HomeViewModel()
     @State var items: [String] = []
     
@@ -56,10 +57,7 @@ struct HomeView: View {
         NavigationSplitView {
             VStack {
                 VStack (alignment: .center) {
-                    Image(systemName: "barcode")
-                        .resizable()
-                        .frame(width: 200, height: 150)
-                        .padding(.top, 16)
+                    ScannerActionButton()
                     
                     List(filteredItems, id: \.self) { item in
                         NavigationLink {
@@ -78,40 +76,7 @@ struct HomeView: View {
                     }
                 }
                 Spacer()
-                HStack {
-                    Button(action: {
-                        
-                    }) {
-                        VStack {
-                            Image(systemName: "house")
-                            Text("Inicio")
-                                .padding(.top, 5)
-                        }
-                    }
-                    .padding()
-                    
-                    Button(action: {
-                        
-                    }) {
-                        VStack {
-                            Image(systemName: "plus.app.fill")
-                            Text("añadir productos")
-                                .padding(.top, 5)
-                        }
-                    }
-                    .padding()
-                    
-                    Button(action: {
-                        
-                    }) {
-                        VStack {
-                            Image(systemName: "person.fill")
-                            Text("Perfil")
-                                .padding(.top, 5)
-                        }
-                    }
-                    .padding()
-                }
+                MenuFooter()
             }
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarBackground(Color.blueBackground, for: .navigationBar)
@@ -134,6 +99,3 @@ struct HomeView: View {
     }
 }
 
-#Preview {
-    HomeView()
-}
