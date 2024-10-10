@@ -13,7 +13,8 @@ struct HomeView: View {
     @State private var isProductListViewPresent: Bool = false
     @State private var isProfileViewPresent: Bool = false
     @State private var searchText: String = String.emptyString
-    @State private var isLoadProducts: Bool = true
+    @State private var isLoadProducts: Bool = false
+    @State private var isNotProducts: Bool = false
     @StateObject private var homeViewModel = HomeViewModel()
     @State var items: [String] = []
     
@@ -35,11 +36,19 @@ struct HomeView: View {
                             let data = jsonResponse as? [Any]
                             let productos = homeViewModel.getProducts(rawData: data!)
                             self.items = productos
+                        } else {
+                            isNotProducts = true
+                            print("ha ocurrido un error")
                         }
                     }
                 }
         } else {
             homeViewContent
+                .onAppear {
+                    if (items.count < 1) && !isNotProducts {
+                        isLoadProducts = true
+                    }
+                }
         }
     }
     

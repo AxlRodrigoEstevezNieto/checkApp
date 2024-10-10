@@ -26,7 +26,7 @@ class Router {
         
         if (userName != String.empty) && (password != String.empty) {
             Auth.auth().signIn(withEmail: userName, password: password) { result, error in
-                if let result = result, error == nil {
+                if let _ = result, error == nil {
                     let isLogin = true
                     completionHanler(isLogin)
                 } else {
