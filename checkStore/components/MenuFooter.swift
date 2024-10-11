@@ -18,6 +18,7 @@ struct MenuFooter: View {
                     Text("Inicio")
                         .padding(.top, 5)
                 }
+                .foregroundStyle(Color.blueBackground)
             }
             .padding()
             
@@ -28,7 +29,7 @@ struct MenuFooter: View {
                     Image(systemName: "plus.app.fill")
                     Text("añadir productos")
                         .padding(.top, 5)
-                }
+                }.foregroundStyle(Color.blueBackground)
             }
             .padding()
             
@@ -39,7 +40,7 @@ struct MenuFooter: View {
                     Image(systemName: "person.fill")
                     Text("Perfil")
                         .padding(.top, 5)
-                }
+                }.foregroundStyle(Color.blueBackground)
             }
             .padding()
         }
