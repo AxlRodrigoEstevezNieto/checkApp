@@ -12,10 +12,15 @@ struct ScannerActionButton: View {
         Button(action: {
             
         }) {
-            Image(systemName: "barcode")
-                .resizable()
-                .frame(width: 200, height: 150)
-                .padding(.top, 16)
+            VStack(alignment: .center) {
+                Image(systemName: "barcode")
+                    .resizable()
+                    .frame(width: 200, height: 150)
+                    .padding(.top, 16)
+                    .foregroundStyle(.black)
+                Text("Escanea el código de barras")
+                    .foregroundStyle(Color.blueBackground)
+            }
         }
     }
 }
