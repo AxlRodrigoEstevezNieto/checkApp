@@ -28,23 +28,7 @@ struct HomeContentView: View {
                 VStack (alignment: .center) {
                     ScannerActionButton(codeScannerViewModel: codeScannerViewModel)
                         .sheet(isPresented: ($codeScannerViewModel.isPresentingScanner)) {
-                            CodeScannerView(
-                                codeTypes:
-                                    [
-                                        .qr,
-                                        .codabar,
-                                        .gs1DataBar,
-                                        .gs1DataBarLimited,
-                                        .gs1DataBarExpanded
-                                    ],
-                                scanMode: .continuous) { response in
-                                if case let .success(result) = response {
-                                    scannerCode = result.string
-                                    codeScannerViewModel.isPresentingScanner = false
-                                } else if case let .failure(failure) = response {
-                                    
-                                }
-                            }
+                            BarcodeScannerView()
                         }
                     
                     List(filteredItems, id: \.self) { item in

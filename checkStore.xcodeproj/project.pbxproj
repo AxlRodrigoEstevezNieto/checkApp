@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		451335352CB7B1AF00D54FDA /* MenuFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451335342CB7B1AF00D54FDA /* MenuFooter.swift */; };
 		451335372CB7B20400D54FDA /* ScannerActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451335362CB7B20400D54FDA /* ScannerActionButton.swift */; };
+		451725E42CC31DF00072C240 /* BarcodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451725E32CC31DF00072C240 /* BarcodeScannerView.swift */; };
+		451725E62CC31F590072C240 /* VideoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451725E52CC31F590072C240 /* VideoCaptureView.swift */; };
+		451725E82CC325850072C240 /* BarcodeOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451725E72CC325850072C240 /* BarcodeOverlay.swift */; };
 		451B8B562C78E50200996282 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B8B552C78E50200996282 /* Utils.swift */; };
 		451B8B592C78F03E00996282 /* SingUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B8B582C78F03E00996282 /* SingUpView.swift */; };
 		451B8B5C2C79239F00996282 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B8B5B2C79239F00996282 /* HomeView.swift */; };
@@ -42,6 +45,9 @@
 		0640D3049F414AD77669B42D /* Pods-checkStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-checkStore.debug.xcconfig"; path = "Target Support Files/Pods-checkStore/Pods-checkStore.debug.xcconfig"; sourceTree = "<group>"; };
 		451335342CB7B1AF00D54FDA /* MenuFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuFooter.swift; sourceTree = "<group>"; };
 		451335362CB7B20400D54FDA /* ScannerActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerActionButton.swift; sourceTree = "<group>"; };
+		451725E32CC31DF00072C240 /* BarcodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerView.swift; sourceTree = "<group>"; };
+		451725E52CC31F590072C240 /* VideoCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCaptureView.swift; sourceTree = "<group>"; };
+		451725E72CC325850072C240 /* BarcodeOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeOverlay.swift; sourceTree = "<group>"; };
 		451B8B552C78E50200996282 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		451B8B582C78F03E00996282 /* SingUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpView.swift; sourceTree = "<group>"; };
 		451B8B5B2C79239F00996282 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -111,6 +117,16 @@
 			path = components;
 			sourceTree = "<group>";
 		};
+		451725E22CC31DCD0072C240 /* BarcodeScannerView */ = {
+			isa = PBXGroup;
+			children = (
+				451725E32CC31DF00072C240 /* BarcodeScannerView.swift */,
+				451725E52CC31F590072C240 /* VideoCaptureView.swift */,
+				451725E72CC325850072C240 /* BarcodeOverlay.swift */,
+			);
+			path = BarcodeScannerView;
+			sourceTree = "<group>";
+		};
 		451B8B572C78EDFE00996282 /* SingUP */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +179,7 @@
 		4539F71C2C4F61380036E0B0 /* checkStore */ = {
 			isa = PBXGroup;
 			children = (
+				451725E22CC31DCD0072C240 /* BarcodeScannerView */,
 				455CB5CE2CB9DD5C007716E2 /* CodeScanner */,
 				451335312CB7B16300D54FDA /* components */,
 				45AD40CE2C8E902600013BA2 /* userModel */,
@@ -388,11 +405,14 @@
 				45381FA82C7823A0003B3FF5 /* LoginModel.swift in Sources */,
 				451B8B562C78E50200996282 /* Utils.swift in Sources */,
 				45381FAE2C782671003B3FF5 /* ApiRouter.swift in Sources */,
+				451725E62CC31F590072C240 /* VideoCaptureView.swift in Sources */,
 				45AD40D02C8E904900013BA2 /* UserModel.swift in Sources */,
 				453FF3F82C6D7F60005D4E25 /* LottieView.swift in Sources */,
 				45D641EF2CBA08F2005DAE4A /* HomeContentView.swift in Sources */,
+				451725E42CC31DF00072C240 /* BarcodeScannerView.swift in Sources */,
 				455F77A12C868A2F00ABD3C2 /* CustomSettings.swift in Sources */,
 				451B8B592C78F03E00996282 /* SingUpView.swift in Sources */,
+				451725E82CC325850072C240 /* BarcodeOverlay.swift in Sources */,
 				456305122C87CFB1000F74FC /* HomeViewModel.swift in Sources */,
 				45381FA52C781ADD003B3FF5 /* LoginViewModel.swift in Sources */,
 			);
