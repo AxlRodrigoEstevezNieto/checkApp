@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CodeScanner
 
 struct HomeContentView: View {
     @ObservedObject var codeScannerViewModel: CodeScannerViewModel

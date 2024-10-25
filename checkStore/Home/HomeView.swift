@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CodeScanner
 
 struct HomeView: View {
     
