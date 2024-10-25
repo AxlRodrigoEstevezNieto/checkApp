@@ -10,8 +10,6 @@
 		451335352CB7B1AF00D54FDA /* MenuFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451335342CB7B1AF00D54FDA /* MenuFooter.swift */; };
 		451335372CB7B20400D54FDA /* ScannerActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451335362CB7B20400D54FDA /* ScannerActionButton.swift */; };
 		451725E42CC31DF00072C240 /* BarcodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451725E32CC31DF00072C240 /* BarcodeScannerView.swift */; };
-		451725E62CC31F590072C240 /* VideoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451725E52CC31F590072C240 /* VideoCaptureView.swift */; };
-		451725E82CC325850072C240 /* BarcodeOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451725E72CC325850072C240 /* BarcodeOverlay.swift */; };
 		451B8B562C78E50200996282 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B8B552C78E50200996282 /* Utils.swift */; };
 		451B8B592C78F03E00996282 /* SingUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B8B582C78F03E00996282 /* SingUpView.swift */; };
 		451B8B5C2C79239F00996282 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451B8B5B2C79239F00996282 /* HomeView.swift */; };
@@ -23,6 +21,8 @@
 		4539F7202C4F61380036E0B0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539F71F2C4F61380036E0B0 /* ContentView.swift */; };
 		4539F7222C4F61390036E0B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4539F7212C4F61390036E0B0 /* Assets.xcassets */; };
 		4539F7252C4F61390036E0B0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4539F7242C4F61390036E0B0 /* Preview Assets.xcassets */; };
+		453FB5632CCB0E2B00D5437F /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453FB5622CCB0E1700D5437F /* BarcodeScannerViewController.swift */; };
+		453FB5652CCB16AD00D5437F /* ScannerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453FB5642CCB16AD00D5437F /* ScannerContentView.swift */; };
 		453FF3F32C6D7E74005D4E25 /* Login animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 453FF3F22C6D7E74005D4E25 /* Login animation.json */; };
 		453FF3F52C6D7EA3005D4E25 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453FF3F42C6D7EA3005D4E25 /* Constants.swift */; };
 		453FF3F82C6D7F60005D4E25 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453FF3F72C6D7F60005D4E25 /* LottieView.swift */; };
@@ -46,8 +46,6 @@
 		451335342CB7B1AF00D54FDA /* MenuFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuFooter.swift; sourceTree = "<group>"; };
 		451335362CB7B20400D54FDA /* ScannerActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerActionButton.swift; sourceTree = "<group>"; };
 		451725E32CC31DF00072C240 /* BarcodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerView.swift; sourceTree = "<group>"; };
-		451725E52CC31F590072C240 /* VideoCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCaptureView.swift; sourceTree = "<group>"; };
-		451725E72CC325850072C240 /* BarcodeOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeOverlay.swift; sourceTree = "<group>"; };
 		451B8B552C78E50200996282 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		451B8B582C78F03E00996282 /* SingUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpView.swift; sourceTree = "<group>"; };
 		451B8B5B2C79239F00996282 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -60,6 +58,8 @@
 		4539F71F2C4F61380036E0B0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4539F7212C4F61390036E0B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4539F7242C4F61390036E0B0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		453FB5622CCB0E1700D5437F /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
+		453FB5642CCB16AD00D5437F /* ScannerContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerContentView.swift; sourceTree = "<group>"; };
 		453FF3F22C6D7E74005D4E25 /* Login animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Login animation.json"; sourceTree = "<group>"; };
 		453FF3F42C6D7EA3005D4E25 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		453FF3F72C6D7F60005D4E25 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
@@ -120,9 +120,9 @@
 		451725E22CC31DCD0072C240 /* BarcodeScannerView */ = {
 			isa = PBXGroup;
 			children = (
+				453FB5622CCB0E1700D5437F /* BarcodeScannerViewController.swift */,
 				451725E32CC31DF00072C240 /* BarcodeScannerView.swift */,
-				451725E52CC31F590072C240 /* VideoCaptureView.swift */,
-				451725E72CC325850072C240 /* BarcodeOverlay.swift */,
+				453FB5642CCB16AD00D5437F /* ScannerContentView.swift */,
 			);
 			path = BarcodeScannerView;
 			sourceTree = "<group>";
@@ -399,20 +399,20 @@
 				451335352CB7B1AF00D54FDA /* MenuFooter.swift in Sources */,
 				455CB5D02CB9DD76007716E2 /* CodeScannerViewModel.swift in Sources */,
 				45381FAB2C782421003B3FF5 /* UtilString.swift in Sources */,
+				453FB5652CCB16AD00D5437F /* ScannerContentView.swift in Sources */,
 				451335372CB7B20400D54FDA /* ScannerActionButton.swift in Sources */,
 				45D466982C6DD5090010597C /* LoginView.swift in Sources */,
 				45D4669C2C6DD9520010597C /* SpinnerView.swift in Sources */,
 				45381FA82C7823A0003B3FF5 /* LoginModel.swift in Sources */,
 				451B8B562C78E50200996282 /* Utils.swift in Sources */,
 				45381FAE2C782671003B3FF5 /* ApiRouter.swift in Sources */,
-				451725E62CC31F590072C240 /* VideoCaptureView.swift in Sources */,
 				45AD40D02C8E904900013BA2 /* UserModel.swift in Sources */,
 				453FF3F82C6D7F60005D4E25 /* LottieView.swift in Sources */,
 				45D641EF2CBA08F2005DAE4A /* HomeContentView.swift in Sources */,
 				451725E42CC31DF00072C240 /* BarcodeScannerView.swift in Sources */,
 				455F77A12C868A2F00ABD3C2 /* CustomSettings.swift in Sources */,
 				451B8B592C78F03E00996282 /* SingUpView.swift in Sources */,
-				451725E82CC325850072C240 /* BarcodeOverlay.swift in Sources */,
+				453FB5632CCB0E2B00D5437F /* BarcodeScannerViewController.swift in Sources */,
 				456305122C87CFB1000F74FC /* HomeViewModel.swift in Sources */,
 				45381FA52C781ADD003B3FF5 /* LoginViewModel.swift in Sources */,
 			);

@@ -6,38 +6,23 @@
 //
 
 import SwiftUI
-import AVFoundation
+import UIKit
 
-struct BarcodeScannerView: View {
-    @State private var captureSession: AVCaptureSession?
-    @State private var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+struct BarcodeScannerView: UIViewControllerRepresentable {
+
+    var onFoundBarcoe: (String) -> Void
     
-    var body: some View {
-        ZStack {
-            VideoCaptureView(captureSession: $captureSession, videoPreviewLayer: $videoPreviewLayer)
-                .ignoresSafeArea(.all)
-            BarcodeOverlay(captureSession: $captureSession)
-                .ignoresSafeArea(.all)
+    func makeUIViewController(context: Context) -> BarcodeScannerViewController {
+        let viewController = BarcodeScannerViewController()
+        viewController.didFindCode = { code in
+            onFoundBarcoe(code)
         }
-        .onAppear(perform: startSession)
+        
+        return viewController
     }
     
-    private func startSession() {
-        guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
-        do {
-            let input = try AVCaptureDeviceInput(device: captureDevice)
-            captureSession = AVCaptureSession()
-            captureSession?.addInput(input)
-            videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
-            videoPreviewLayer?.videoGravity = .resizeAspectFill
-            videoPreviewLayer?.frame = UIScreen.main.bounds
-            captureSession?.startRunning()
-        } catch {
-            print(error)
-        }
+    func updateUIViewController(_ uiViewController: BarcodeScannerViewController, context: Context) {
+        
     }
 }
 
-#Preview {
-    BarcodeScannerView()
-}

@@ -28,7 +28,7 @@ struct HomeContentView: View {
                 VStack (alignment: .center) {
                     ScannerActionButton(codeScannerViewModel: codeScannerViewModel)
                         .sheet(isPresented: ($codeScannerViewModel.isPresentingScanner)) {
-                            BarcodeScannerView()
+                            ScannerContentView(codeScannerViewModel: codeScannerViewModel)
                         }
                     
                     List(filteredItems, id: \.self) { item in
