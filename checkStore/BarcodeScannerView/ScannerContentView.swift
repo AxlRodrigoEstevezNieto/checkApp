@@ -18,7 +18,6 @@ struct ScannerContentView: View {
             
             BarcodeScannerView { code in
                 self.codeScannerViewModel.setCode(code)
-                
             }
             .ignoresSafeArea(.all)
         }

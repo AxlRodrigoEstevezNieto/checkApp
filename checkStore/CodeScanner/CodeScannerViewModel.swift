@@ -24,7 +24,7 @@ class CodeScannerViewModel: ObservableObject {
     }
     
     func setCode(_ code: String) {
-        if self.code.isEmpty {
+        if !code.isEmpty {
             self.code = code
             print(self.code)
             activeScanner()
