@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeContentView: View {
     @ObservedObject var codeScannerViewModel: CodeScannerViewModel
+    @StateObject var productDetailViewModel = ProductDetailViewModel()
     @State private var scannerCode: String = String.emptyString
     @State private var searchText: String = String.emptyString
     var items: [String]
@@ -26,10 +27,6 @@ struct HomeContentView: View {
             VStack {
                 VStack (alignment: .center) {
                     ScannerActionButton(codeScannerViewModel: codeScannerViewModel)
-                        .sheet(isPresented: ($codeScannerViewModel.isPresentingScanner)) {
-                            ScannerContentView(codeScannerViewModel: codeScannerViewModel)
-                        }
-                    
                     List(filteredItems, id: \.self) { item in
                         NavigationLink {
                             Text("En construcción ...")
@@ -48,6 +45,18 @@ struct HomeContentView: View {
                 }
                 Spacer()
                 MenuFooter()
+            }
+            .fullScreenCover(isPresented: $productDetailViewModel.detailPresing, content: {
+                ProductDetailContentView(
+                    productDetailViewModel: self.productDetailViewModel,
+                    barcodeProduct: codeScannerViewModel.code
+                )
+            })
+            .sheet(isPresented: ($codeScannerViewModel.isPresentingScanner)) {
+                ScannerContentView(
+                    codeScannerViewModel: codeScannerViewModel,
+                    productDetailViewModel: productDetailViewModel
+                )
             }
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarBackground(Color.blueBackground, for: .navigationBar)
