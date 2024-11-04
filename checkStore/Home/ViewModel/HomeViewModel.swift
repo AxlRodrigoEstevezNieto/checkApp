@@ -20,13 +20,18 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func getProducts(rawData: [Any]) -> [String] {
-        var productsName: [String] = []
+    func getProducts(rawData: [Any]) -> [ProductModel] {
+        var productsList: [ProductModel] = []
         for data in rawData {
-            let productObj = data as? [String:Any]
-            let name = productObj?["nombre"] ?? String.empty
-            productsName.append(name as! String)
+            let json = data as? [String:Any]
+            var newProduct = ProductModel()
+            newProduct.barcode = json?["barcode"] as! String
+            newProduct.marca = json?["marca"] as! String
+            newProduct.nombre = json?["nombre"] as! String
+            newProduct.precio = json?["precio"] as! String
+            newProduct.presentacion = json?["presentacion"] as! String
+            productsList.append(newProduct)
         }
-        return productsName
+        return productsList
     }
 }

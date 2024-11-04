@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ScannerContentView: View {
     @ObservedObject var codeScannerViewModel: CodeScannerViewModel
+    @StateObject var productDetailViewModel: ProductDetailViewModel
     @State private var scannedCode: String = "Escanea un código de barras"
+    
     
     var body: some View {
         VStack {
@@ -17,7 +19,12 @@ struct ScannerContentView: View {
                 .padding()
             
             BarcodeScannerView { code in
-                self.codeScannerViewModel.setCode(code)
+                if !code.isEmpty {
+                    self.codeScannerViewModel.setCode(code)
+                    self.codeScannerViewModel.activeScanner()
+                    self.productDetailViewModel.detailPresing = true
+                    self.productDetailViewModel.isLoadDetail = true
+                }
             }
             .ignoresSafeArea(.all)
         }
@@ -25,5 +32,5 @@ struct ScannerContentView: View {
 }
 
 #Preview {
-    ScannerContentView(codeScannerViewModel: CodeScannerViewModel())
+    ScannerContentView(codeScannerViewModel: CodeScannerViewModel(), productDetailViewModel: ProductDetailViewModel())
 }

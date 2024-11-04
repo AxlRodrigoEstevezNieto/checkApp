@@ -14,7 +14,7 @@ struct HomeView: View {
     @State private var isProfileViewPresent: Bool = false
     @State private var isLoadProducts: Bool = false
     @State private var isNotProducts: Bool = false
-    @State var items: [String] = []
+    @State var items: [ProductModel] = []
     @StateObject private var homeViewModel = HomeViewModel()
     @ObservedObject private var codeScannerViewModel = CodeScannerViewModel()
     

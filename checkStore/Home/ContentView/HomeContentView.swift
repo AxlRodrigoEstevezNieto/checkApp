@@ -9,15 +9,19 @@ import SwiftUI
 
 struct HomeContentView: View {
     @ObservedObject var codeScannerViewModel: CodeScannerViewModel
+    @StateObject var productDetailViewModel = ProductDetailViewModel()
     @State private var scannerCode: String = String.emptyString
     @State private var searchText: String = String.emptyString
-    var items: [String]
+    @State private var productSelected: ProductModel = ProductModel()
+    var items: [ProductModel]
     
     var filteredItems: [String] {
         if searchText.isEmpty {
-            return items
+            return items.map { $0.nombre }
         } else {
-            return items.filter { $0.lowercased().contains(searchText.lowercased())}
+            return items.map {
+                $0.nombre.lowercased().filter { $0.lowercased().contains(searchText.lowercased()) }
+            }
         }
     }
 
@@ -26,28 +30,37 @@ struct HomeContentView: View {
             VStack {
                 VStack (alignment: .center) {
                     ScannerActionButton(codeScannerViewModel: codeScannerViewModel)
-                        .sheet(isPresented: ($codeScannerViewModel.isPresentingScanner)) {
-                            ScannerContentView(codeScannerViewModel: codeScannerViewModel)
-                        }
-                    
                     List(filteredItems, id: \.self) { item in
                         NavigationLink {
-                            Text("En construcción ...")
+                            ProductDetailView(productoBiding: sendProductDetail(productName: item))
                         } label:{
                             Button(action: {
-                                
+                                self.productSelected = sendProductDetail(productName: item)
                             }, label: {
-                                    Text(item)
+                                Text(item)
                             })
                         }
-                        }
+                    }
                     .searchable(text: $searchText, prompt: "Buscar produtos")
+                    .navigationTitle("Inicio")
                     .onAppear {
                         customizeSearchBarCancelButton()
                     }
                 }
                 Spacer()
                 MenuFooter()
+            }
+            .fullScreenCover(isPresented: $productDetailViewModel.detailPresing, content: {
+                ProductDetailContentView(
+                    productDetailViewModel: self.productDetailViewModel,
+                    barcodeProduct: codeScannerViewModel.code
+                )
+            })
+            .sheet(isPresented: ($codeScannerViewModel.isPresentingScanner)) {
+                ScannerContentView(
+                    codeScannerViewModel: codeScannerViewModel,
+                    productDetailViewModel: productDetailViewModel
+                )
             }
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarBackground(Color.blueBackground, for: .navigationBar)
@@ -67,6 +80,17 @@ struct HomeContentView: View {
     func customizeSearchBarCancelButton() {
         let apparance = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])
         apparance.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
+    }
+    
+    func sendProductDetail(productName: String) -> ProductModel {
+        var productFind = ProductModel()
+        for product in items {
+            if product.nombre == productName{
+                productFind = product
+                break
+            }
+        }
+        return productFind
     }
 }
 
