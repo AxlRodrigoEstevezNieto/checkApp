@@ -52,12 +52,6 @@ struct HomeContentView: View {
                 Spacer()
                 MenuFooter()
             }
-            .fullScreenCover(isPresented: $productDetailViewModel.detailPresing, content: {
-                ProductDetailContentView(
-                    productDetailViewModel: self.productDetailViewModel,
-                    barcodeProduct: codeScannerViewModel.code
-                )
-            })
             .sheet(isPresented: ($codeScannerViewModel.isPresentingScanner)) {
                 ScannerContentView(
                     codeScannerViewModel: codeScannerViewModel,
@@ -77,6 +71,12 @@ struct HomeContentView: View {
         } detail: {
             
         }
+        .fullScreenCover(isPresented: $productDetailViewModel.detailPresing, content: {
+            ProductDetailContentView(
+                productDetailViewModel: self.productDetailViewModel,
+                barcodeProduct: codeScannerViewModel.code
+            )
+        })
     }
     
     func customizeSearchBarCancelButton() {

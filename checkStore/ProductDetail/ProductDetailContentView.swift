@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProductDetailContentView: View {
-    
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var productDetailViewModel: ProductDetailViewModel
     var barcodeProduct: String
     @State var producto = ProductModel()
@@ -25,10 +25,26 @@ struct ProductDetailContentView: View {
                     }
                 }
         } else {
-            ProductDetailView(productoBiding: producto)
-                .onDisappear{
-                    productDetailViewModel.detailPresing = false
+            VStack {
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        productDetailViewModel.detailPresing = false
+                        dismiss()
+                    }, label: {
+                        Image(systemName: "x.circle.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+
+                    })
+                    .padding(.trailing, 16)
+                    .padding(.top, 16)
                 }
+                ProductDetailView(productoBiding: producto)
+                    .onDisappear{
+                        productDetailViewModel.detailPresing = false
+                    }
+            }
         }
     }
 }
