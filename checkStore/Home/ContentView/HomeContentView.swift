@@ -34,10 +34,10 @@ struct HomeContentView: View {
                     ScannerActionButton(codeScannerViewModel: codeScannerViewModel)
                     List(filteredItems, id: \.self) { item in
                         NavigationLink {
-                            ProductDetailView(productoBiding: sendProductDetail(productName: item))
+                            ProductDetailView(productoBiding: searchProductDetail(productName: item))
                         } label:{
                             Button(action: {
-                                self.productSelected = sendProductDetail(productName: item)
+                                print("INIT NAVIGATIONLINK")
                             }, label: {
                                 Text(item)
                             })
@@ -84,7 +84,7 @@ struct HomeContentView: View {
         apparance.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
     }
     
-    func sendProductDetail(productName: String) -> ProductModel {
+    func searchProductDetail(productName: String) -> ProductModel {
         var productFind = ProductModel()
         for product in items {
             if product.nombre == productName{
