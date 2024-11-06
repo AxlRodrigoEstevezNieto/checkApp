@@ -11,6 +11,7 @@ struct LoginView: View {
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var isLoggedIn: Bool = false
+    @State private var errorLogin: Bool = false
     @State private var spinerViewPresent: Bool = false
     @State private var isSignInView: Bool = false
     @StateObject private var viewModel = LoginViewModel()
@@ -18,12 +19,19 @@ struct LoginView: View {
     var body: some View {
         if !spinerViewPresent && !isLoggedIn{
             loginView
+                .alert(
+                    Text("Credenciales invalidas"),
+                    isPresented: $errorLogin) {
+                        Button("Aceptar"){
+                            self.errorLogin = false
+                        }
+                    } message : {
+                        Text("Por favor valida tus accesos")
+                    }
         } else if !isLoggedIn && spinerViewPresent{
             SpinnerView(title: "Validando datos")
         } else if isLoggedIn && !spinerViewPresent {
             HomeView()
-        } else if !isLoggedIn && !spinerViewPresent {
-            Text("Fallo el inicio de sesión")
         }
     }
     
@@ -78,13 +86,16 @@ struct LoginView: View {
                 Button(action: {
                     spinerViewPresent = true
                     let user = UserModel(userName: $username.wrappedValue, password: $password.wrappedValue)
-                    viewModel.login(user: user) { isLogin in
-                        if isLogin {
-                            isLoggedIn = true
-                            spinerViewPresent = false
-                        } else {
+                    viewModel.login(user: user) { isLogin, error in
+                        
+                        if error{
+                            errorLogin = error
                             isLoggedIn = false
                             spinerViewPresent = false
+                        } else if isLogin {
+                            isLoggedIn = isLogin
+                            spinerViewPresent = false
+                            errorLogin = error
                         }
                     }
                 }) {

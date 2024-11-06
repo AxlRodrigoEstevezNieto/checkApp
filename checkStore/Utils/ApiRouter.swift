@@ -13,7 +13,7 @@ import FirebaseFirestore
 public typealias ResponseHandler = (_ jsonResponse: Any, _ urlResponse: URLResponse?) -> ()
 public typealias ResponseFirestore = (_ jsonResponse: Any?, _ error: Error?) -> ()
 public typealias ProductoResponse = (_ jsonData: [String: Any]?, _ error: Error?) -> ()
-public typealias ResponseLoginHandler = (_ isLogin: Bool) -> ()
+public typealias ResponseLoginHandler = (_ isLogin: Bool, _ error: Bool) -> ()
 public typealias ResponseSingInHandler = (_ isSuccess: Bool) -> ()
 
 class Router {
@@ -28,12 +28,18 @@ class Router {
             Auth.auth().signIn(withEmail: userName, password: password) { result, error in
                 if let _ = result, error == nil {
                     let isLogin = true
-                    completionHanler(isLogin)
+                    let errorLogin = false
+                    completionHanler(isLogin, errorLogin)
                 } else {
                     let isLogin = false
-                    completionHanler(isLogin)
+                    let errorLogin = true
+                    completionHanler(isLogin, errorLogin)
                 }
             }
+        } else {
+            let isLogin = false
+            let error = true
+            completionHanler(isLogin, error)
         }
     }
      

@@ -79,7 +79,7 @@ struct SingUPView: View {
                 Button(action: {
                     spinerViewPresent = true
                     let user = UserModel(userName: $username.wrappedValue, password: $password.wrappedValue)
-                    loginViewModel.login(user: user) { isLogin in
+                    loginViewModel.login(user: user) { isLogin, error in
                         if isLogin {
                             isLoggedIn = true
                             spinerViewPresent = false

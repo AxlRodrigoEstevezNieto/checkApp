@@ -15,9 +15,13 @@ class LoginViewModel: ObservableObject {
     private let router = Router()
     
     func login(user: UserModel, handler: @escaping ResponseLoginHandler) {
-        router.firebaseAuthLogin(user: user) { isLogin in
-            self.saveStorageUser(isLogin, user: user.userName)
-            handler(isLogin)
+        router.firebaseAuthLogin(user: user) { isLogin, error  in
+            if error {
+                handler(isLogin, error)
+            } else {
+                self.saveStorageUser(isLogin, user: user.userName)
+                handler(isLogin, error)
+            }
         }
     }
     
