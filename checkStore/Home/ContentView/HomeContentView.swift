@@ -8,20 +8,22 @@
 import SwiftUI
 
 struct HomeContentView: View {
-    @ObservedObject var codeScannerViewModel: CodeScannerViewModel
+    @StateObject var codeScannerViewModel: CodeScannerViewModel
     @StateObject var productDetailViewModel = ProductDetailViewModel()
     @State private var scannerCode: String = String.emptyString
     @State private var searchText: String = String.emptyString
     @State private var productSelected: ProductModel = ProductModel()
     var items: [ProductModel]
     
+    var productNameItems: [String]{
+        return items.map { $0.nombre }
+    }
+    
     var filteredItems: [String] {
         if searchText.isEmpty {
-            return items.map { $0.nombre }
+            return productNameItems
         } else {
-            return items.map {
-                $0.nombre.lowercased().filter { $0.lowercased().contains(searchText.lowercased()) }
-            }
+            return productNameItems.filter { $0.lowercased().contains(searchText.lowercased()) }
         }
     }
 
