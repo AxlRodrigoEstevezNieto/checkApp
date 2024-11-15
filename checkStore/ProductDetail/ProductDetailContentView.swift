@@ -12,6 +12,7 @@ struct ProductDetailContentView: View {
     @ObservedObject var productDetailViewModel: ProductDetailViewModel
     var barcodeProduct: String
     @State var producto = ProductModel()
+    @State var isProductNull: Bool = false
     
     var body: some View {
         if productDetailViewModel.isLoadDetail {
@@ -21,6 +22,8 @@ struct ProductDetailContentView: View {
                         if error == nil{
                             producto = productDetailViewModel.createProductFromJSON(json: jsonData ?? [:])
                             productDetailViewModel.isLoadDetail = false
+                        } else {
+                            productDetailViewModel.notProduct = true
                         }
                     }
                 }

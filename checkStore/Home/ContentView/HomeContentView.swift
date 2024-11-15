@@ -77,6 +77,13 @@ struct HomeContentView: View {
                 barcodeProduct: codeScannerViewModel.code
             )
         })
+        .alert(
+            Text("Producto no encontrado"),
+            isPresented: $productDetailViewModel.isLoadDetail) {
+                Button("Aceptar") {
+                    self.productDetailViewModel.isLoadDetail = false
+                }
+            }
     }
     
     func customizeSearchBarCancelButton() {

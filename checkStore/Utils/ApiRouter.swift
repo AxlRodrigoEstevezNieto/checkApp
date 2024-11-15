@@ -97,7 +97,11 @@ extension Router {
                     }
                     return nil
                 }
-                completionHandler(product[0], nil)
+                if product.isEmpty {
+                    completionHandler([:], error)
+                } else {
+                    completionHandler(product[0], nil)
+                }
             }
         }
     }
